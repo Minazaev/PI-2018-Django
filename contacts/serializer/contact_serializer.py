@@ -1,8 +1,8 @@
 from contacts.models.contact import Contact
-from serializer.custom_base_serializer import CustomBaseSerializer
+from rest_framework import serializers
 
 
-class ContactSerializer(CustomBaseSerializer):
+class ContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Contact

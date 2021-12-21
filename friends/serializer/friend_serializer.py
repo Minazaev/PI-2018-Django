@@ -1,8 +1,8 @@
 from friends.models.friend import Friend
-from serializer.custom_base_serializer import CustomBaseSerializer
+from rest_framework import serializers
 
 
-class FriendSerializer(CustomBaseSerializer):
+class FriendSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Friend
