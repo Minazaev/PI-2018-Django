@@ -1,14 +1,9 @@
-from rest_framework import serializers
 from contacts.models.contact import Contact
+from serializer.custom_base_serializer import CustomBaseSerializer
 
 
-class ContactSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedRelatedField(
-        view_name='contact-detail',
-        read_only=True
-    )
+class ContactSerializer(CustomBaseSerializer):
 
     class Meta:
         model = Contact
         fields = '__all__'
-

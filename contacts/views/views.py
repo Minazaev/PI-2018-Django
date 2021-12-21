@@ -1,8 +1,9 @@
 from contacts.models.contact import Contact
 from rest_framework import viewsets
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
 from contacts.serializer.contact_serializer import ContactSerializer
+from rest_framework.permissions import IsAdminUser
+from rest_framework.decorators import action
 
 
 class ContactViewSet(viewsets.ViewSet):
@@ -10,10 +11,14 @@ class ContactViewSet(viewsets.ViewSet):
     serializer_class = ContactSerializer
 
     def list(self, request):
-        queryset = Contact.objects.all()
-        serializer_context = {
-            'request': request,
-        }
-        serializer = ContactSerializer(queryset, many=True, context=serializer_context)
+        serializer_context = {'request': request}
+        serializer = ContactSerializer(self.queryset, many=True, context=serializer_context)
         return Response(serializer.data)
+
+    def get(self, request):
+        return Response()
+
+    @action(methods=['post'], detail=True, permission_classes=[IsAdminUser])
+    def post(self, request):
+        return Response()
 

@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
 from contacts.views.views import ContactViewSet
-from rest_framework import routers, serializers, viewsets
+from friends.views.views import FriendViewSet
+from rest_framework import serializers, viewsets
+from router.router import register_route, router
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        fields = ['url', 'username', 'email', 'is_staff', 'is_superuser']
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -31,16 +33,14 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'contacts', ContactViewSet)
+register_route(r'users', UserViewSet, None)
+register_route(r'contacts', ContactViewSet, 'contact-detail')
+register_route(r'friends', FriendViewSet, 'friend-detail')
+
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path(r'contacts/', ContactViewSet.as_view({'contacts': 'list'})),
-    # path('friends/', include('friends.urls')),
 ]
-
 
