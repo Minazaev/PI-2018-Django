@@ -1,15 +1,23 @@
+from api.serializers import DualSerializerViewSet
 from contacts.models.contact import Contact
 from rest_framework import viewsets
 from rest_framework.response import Response
-from contacts.serializer.contact_serializer import ContactSerializer
+from contacts.serializers.contact_serializer import ContactSerializer, ContactSerializerPopulated
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import action
 
 
-class ContactViewSet(viewsets.ViewSet):
+class ContactViewSet(DualSerializerViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+    default_serializer_class = ContactSerializerPopulated
+
+    serializer_classes = {
+        'create': ContactSerializer,
+        'update': ContactSerializer
+    }
 
     def list(self, request):
         serializer_context = {'request': request}
