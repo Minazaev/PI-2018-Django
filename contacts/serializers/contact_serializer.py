@@ -21,7 +21,3 @@ class ContactSerializerPopulated(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ContactSerializerPopulatedPopulated(serializers.ModelSerializer):
-    class Meta:
-        model = Contact
-        fields = ['id', 'first_name']
