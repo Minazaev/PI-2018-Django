@@ -20,7 +20,7 @@ class FriendViewSet(DualSerializerViewSet):
 
     default_serializer_class = FriendSerializerPopulatedContactPopulated
 
-    def list(self, request):
+    def list(self, request, **kwargs):
         serializer_context = {'request': request}
         serializer = FriendSerializer(self.queryset, many=True, context=serializer_context)
         return Response(serializer.data)

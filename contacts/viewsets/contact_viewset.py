@@ -1,8 +1,7 @@
 from api.serializers import DualSerializerViewSet
 from contacts.models.contact import Contact
-from rest_framework import viewsets
 from rest_framework.response import Response
-from contacts.serializers.contact_serializer import ContactSerializer, ContactSerializerPopulated
+from contacts.serializers.contact_serializer import ContactSerializer, ContactSerializerPopulated, ContactSerializerPopulatedPopulated
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import action
@@ -10,16 +9,16 @@ from rest_framework.decorators import action
 
 class ContactViewSet(DualSerializerViewSet):
     queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
+    serializer_class = ContactSerializerPopulatedPopulated
 
-    default_serializer_class = ContactSerializerPopulated
+    default_serializer_class = ContactSerializerPopulatedPopulated
 
     serializer_classes = {
-        'create': ContactSerializer,
-        'update': ContactSerializer
+        'create': ContactSerializerPopulatedPopulated,
+        'update': ContactSerializerPopulatedPopulated
     }
 
-    def list(self, request):
+    def list(self, request, **kwargs):
         serializer_context = {'request': request}
         serializer = ContactSerializer(self.queryset, many=True, context=serializer_context)
         return Response(serializer.data)
@@ -30,8 +29,7 @@ class ContactViewSet(DualSerializerViewSet):
         serializer = ContactSerializer(contact, many=False, context=serializer_context)
         return Response(serializer.data)
 
-    def get(self, request):
-        return Response()
+
 
     @action(methods=['post'], detail=True, permission_classes=[IsAdminUser])
     def post(self, request):
