@@ -20,19 +20,6 @@ class FriendViewSet(DualSerializerViewSet):
 
     default_serializer_class = FriendSerializerPopulatedContactPopulated
 
-    def list(self, request, **kwargs):
-        serializer_context = {'request': request}
-        serializer = FriendSerializer(self.queryset, many=True, context=serializer_context)
-        return Response(serializer.data)
-
-    @action(methods=['get'], detail=True, permission_classes=[IsAdminUser])
-    def get(self, request):
-        return Response()
-
-    @action(methods=['post'], detail=True, permission_classes=[IsAdminUser])
-    def post(self, request):
-        return Response()
-
     def create(self, request, *args, **kwargs):
         first_contact_id = request.data.get('first_contact')
         second_contact_id = request.data.get('second_contact')

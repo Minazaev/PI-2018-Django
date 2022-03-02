@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 
 
 class ContactViewSet(DualSerializerViewSet):
-    queryset = Contact.objects.all()
+    queryset = Contact.objects.prefetch_related().all()
     # serializer_class = ContactSerializerPopulated
 
     default_serializer_class = ContactSerializerPopulated
