@@ -1,5 +1,5 @@
 from addresses.serializers.address_serializer import AddressSerializer
-from api.serializers import UserSerializer
+from users.serializers.user_serializer import UserSerializer
 from contacts.models.contact import Contact
 from rest_framework import serializers
 

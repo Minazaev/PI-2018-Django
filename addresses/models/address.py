@@ -10,11 +10,11 @@ class Address(models.Model):
 
     country = models.CharField(max_length=30)
 
-    house = models.CharField(max_length=10, default=-1)
+    house = models.CharField(max_length=10, null=True, blank=True)
 
     flat = models.IntegerField(null=True, blank=True)
 
-    zip_code = models.IntegerField(default=-1)
+    zip_code = models.IntegerField(null=True, blank=True)
 
     @classmethod
     def get_address_title(cls):

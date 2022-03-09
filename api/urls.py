@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from api.views import UserViewSet
 from contacts.viewsets.contact_viewset import ContactViewSet
 from friends.viewsets.friend_viewset import FriendViewSet
 from addresses.viewsets.address_viewset import AddressViewSet
+from users.viewsets.user_views import UserViewSet
 from api.router import register_route, router
 
 

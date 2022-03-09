@@ -3,11 +3,7 @@ from rest_framework.exceptions import APIException
 
 from api.serializers import DualSerializerViewSet
 from friends.models.friend import Friend
-from rest_framework import viewsets
-from rest_framework.response import Response
 from friends.serializers.friend_serializer import FriendSerializer, FriendSerializerPopulatedContactPopulated
-from rest_framework.permissions import IsAdminUser
-from rest_framework.decorators import action
 
 
 class FriendViewSet(DualSerializerViewSet):

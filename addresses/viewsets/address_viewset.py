@@ -17,12 +17,12 @@ class AddressViewSet(DualSerializerViewSet):
         'update': AddressSerializer
     }
 
-    def list(self, request, **kwargs):
+    def list(self, request):
         serializer_context = {'request': request}
         serializer = AddressSerializer(self.queryset, many=True, context=serializer_context)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, pk=None, **kwargs):
         serializer_context = {'request': request}
         address = get_object_or_404(self.queryset, pk=pk)
         serializer = AddressSerializer(address, many=False, context=serializer_context)
@@ -32,6 +32,6 @@ class AddressViewSet(DualSerializerViewSet):
     #     return Response()
 
     @action(methods=['post'], detail=True, permission_classes=[IsAdminUser])
-    def post(self, request):
+    def post(self):
         return Response()
 
