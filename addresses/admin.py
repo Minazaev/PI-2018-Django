@@ -3,5 +3,5 @@ from addresses.models.address import Address
 
 
 @admin.register(Address)
-class AddressesAdmin(admin.ModelAdmin):
+class AddressAdmin(admin.ModelAdmin):
     pass

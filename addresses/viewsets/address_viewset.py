@@ -17,7 +17,7 @@ class AddressViewSet(DualSerializerViewSet):
         'update': AddressSerializer
     }
 
-    def list(self, request):
+    def list(self, request, **kwargs):
         serializer_context = {'request': request}
         serializer = AddressSerializer(self.queryset, many=True, context=serializer_context)
         return Response(serializer.data)

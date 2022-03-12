@@ -1,16 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from contacts.viewsets.contact_viewset import ContactViewSet
-from friends.viewsets.friend_viewset import FriendViewSet
+from follows.viewsets.followers_viewset import FollowViewSet
 from addresses.viewsets.address_viewset import AddressViewSet
 from users.viewsets.user_views import UserViewSet
 from api.router import register_route, router
 
 
 register_route(r'users', UserViewSet)
-register_route(r'contacts', ContactViewSet)
-register_route(r'friends', FriendViewSet)
+register_route(r'follows', FollowViewSet)
 register_route(r'addresses', AddressViewSet)
 
 
