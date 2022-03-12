@@ -3,7 +3,7 @@ from django.urls import path, include
 
 from follows.viewsets.followers_viewset import FollowViewSet
 from addresses.viewsets.address_viewset import AddressViewSet
-from users.viewsets.user_views import UserViewSet
+from users.viewsets.user_viewset import UserViewSet
 from api.router import register_route, router
 
 
@@ -16,5 +16,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    # path('users/<int:id>', UserViewSet.status)
 ]
 

@@ -3,8 +3,8 @@ from django.db import models
 
 
 class Photos(models.Model):
-    small = models.CharField(max_length=8000)
-    large = models.CharField(max_length=8000)
+    small = models.CharField(max_length=8000, null=True, blank=True)
+    large = models.CharField(max_length=8000, null=True, blank=True)
 
 
 class CustomUser(AbstractUser):
@@ -13,3 +13,4 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+

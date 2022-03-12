@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.permissions import IsAuthenticated
+
 from follows.models.follow import Follow
 from users.models import CustomUser
 from users.serializers.photos_serializer import PhotosSerializer
@@ -9,6 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
     photos = PhotosSerializer()
 
     followed = serializers.SerializerMethodField()
+
+    permission_classes = [IsAuthenticated]
 
     def get_followed(self, user):
         me = self.context['request'].user

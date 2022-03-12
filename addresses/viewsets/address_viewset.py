@@ -28,9 +28,6 @@ class AddressViewSet(DualSerializerViewSet):
         serializer = AddressSerializer(address, many=False, context=serializer_context)
         return Response(serializer.data)
 
-    # def get(self, request):
-    #     return Response()
-
     @action(methods=['post'], detail=True, permission_classes=[IsAdminUser])
     def post(self):
         return Response()
