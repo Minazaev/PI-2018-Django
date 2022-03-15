@@ -1,16 +1,16 @@
 from django.http import JsonResponse
-from rest_framework import viewsets
-from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.decorators import action
+
 from users.models import CustomUser
-from users.serializers.status_serializer import StatusSerializer
+from common.base_viewset import BaseViewSet
 from users.serializers.user_serializer import UserSerializer
+from users.serializers.status_serializer import StatusSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(BaseViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-    default_serializer_class = UserSerializer
 
     @action(detail=True, methods=['GET', 'PUT'], serializer_class=StatusSerializer)
     def status(self, request, pk):

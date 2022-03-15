@@ -4,9 +4,10 @@ from rest_framework.permissions import IsAuthenticated
 from follows.models.follow import Follow
 from users.models import CustomUser
 from users.serializers.photos_serializer import PhotosSerializer
+from common.base_serializer import BaseSerializer
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(BaseSerializer):
     name = serializers.CharField(source='first_name')
     photos = PhotosSerializer()
 

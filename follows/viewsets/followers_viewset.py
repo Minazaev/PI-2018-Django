@@ -1,14 +1,8 @@
-from api.serializers import DualSerializerViewSet
+from common.base_viewset import BaseViewSet
 from follows.models.follow import Follow
 from follows.serializers.follow_serializer import FollowSerializer
 
 
-class FollowViewSet(DualSerializerViewSet):
+class FollowViewSet(BaseViewSet):
     queryset = Follow.objects.all()
-
-    serializer_classes = {
-        'create': FollowSerializer,
-        'update': FollowSerializer
-    }
-
-    default_serializer_class = FollowSerializer
+    serializer_class = FollowSerializer

@@ -1,8 +1,8 @@
 from follows.models.follow import Follow
-from rest_framework import serializers
+from common.base_serializer import BaseSerializer
 
 
-class FollowSerializer(serializers.ModelSerializer):
+class FollowSerializer(BaseSerializer):
 
     class Meta:
         model = Follow

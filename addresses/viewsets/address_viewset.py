@@ -1,21 +1,14 @@
-from api.serializers import DualSerializerViewSet
-from addresses.models.address import Address
 from rest_framework.response import Response
-from addresses.serializers.address_serializer import AddressSerializer
 from django.shortcuts import get_object_or_404
-from rest_framework.permissions import IsAdminUser
-from rest_framework.decorators import action
+
+from addresses.serializers.address_serializer import AddressSerializer
+from addresses.models.address import Address
+from common.base_viewset import BaseViewSet
 
 
-class AddressViewSet(DualSerializerViewSet):
+class AddressViewSet(BaseViewSet):
     queryset = Address.objects.all()
-
-    default_serializer_class = AddressSerializer
-
-    serializer_classes = {
-        'create': AddressSerializer,
-        'update': AddressSerializer
-    }
+    serializer_class = AddressSerializer
 
     def list(self, request, **kwargs):
         serializer_context = {'request': request}
@@ -27,8 +20,3 @@ class AddressViewSet(DualSerializerViewSet):
         address = get_object_or_404(self.queryset, pk=pk)
         serializer = AddressSerializer(address, many=False, context=serializer_context)
         return Response(serializer.data)
-
-    @action(methods=['post'], detail=True, permission_classes=[IsAdminUser])
-    def post(self):
-        return Response()
-

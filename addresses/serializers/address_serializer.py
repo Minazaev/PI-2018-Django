@@ -1,8 +1,8 @@
 from addresses.models.address import Address
-from rest_framework import serializers
+from common.base_serializer import BaseSerializer
 
 
-class AddressSerializer(serializers.ModelSerializer):
+class AddressSerializer(BaseSerializer):
 
     class Meta:
         model = Address
