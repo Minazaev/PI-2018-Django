@@ -9,12 +9,3 @@ class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['status']
-
-
-class StatusSerializerPopulated(serializers.ModelSerializer):
-    status = StatusSerializer()
-    # status = serializers.SerializerMethodField()
-
-    class Meta:
-        model = CustomUser
-        fields = ['status']
