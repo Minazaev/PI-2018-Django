@@ -22,3 +22,6 @@ class Address(models.Model):
 
     def __str__(self):
         return f'{self.house} {self.street} {self.city}'
+
+    class Meta:
+        verbose_name_plural = 'Address'

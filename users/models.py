@@ -2,15 +2,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class Photos(models.Model):
-    small = models.CharField(max_length=8000, null=True, blank=True)
-    large = models.CharField(max_length=8000, null=True, blank=True)
-
-
 class CustomUser(AbstractUser):
-    status = models.CharField(max_length=1024)
-    photos = models.ForeignKey(Photos, on_delete=models.SET_NULL, null=True, blank=True)
+    objects = models.Manager()
 
     def __str__(self):
-        return self.email
+        return self.get_full_name()
 
+    def __unicode__(self):
+        return self.get_full_name()

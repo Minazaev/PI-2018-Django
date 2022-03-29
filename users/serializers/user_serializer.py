@@ -3,13 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 
 from follows.models.follow import Follow
 from users.models import CustomUser
-from users.serializers.photos_serializer import PhotosSerializer
 from common.base_serializer import BaseSerializer
 
 
 class UserSerializer(BaseSerializer):
     name = serializers.CharField(source='first_name')
-    photos = PhotosSerializer()
 
     followed = serializers.SerializerMethodField()
 
@@ -25,4 +23,4 @@ class UserSerializer(BaseSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'name', 'status', 'photos', 'first_name', 'last_name', 'followed']
+        fields = ['id', 'username', 'email', 'name', 'first_name', 'last_name', 'followed']

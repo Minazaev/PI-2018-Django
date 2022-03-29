@@ -1,5 +1,5 @@
 from django.contrib.auth.admin import UserAdmin
-from users.models import CustomUser, Photos
+from users.models import CustomUser
 from django.contrib import admin
 
 
@@ -7,8 +7,4 @@ from django.contrib import admin
 class UsersAdmin(UserAdmin):
     pass
 
-
-@admin.register(Photos)
-class PhotosAdmin(admin.ModelAdmin):
-    pass
 
