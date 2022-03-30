@@ -1,4 +1,4 @@
-from profiles.models.profiles import Profile
+from profiles.models import Profile
 from common.base_viewset import BaseViewSet
 from profiles.serializers.profile_serializer import ProfileSerializer
 
